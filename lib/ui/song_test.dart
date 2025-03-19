@@ -28,6 +28,14 @@ class AudioTestUI extends StatelessWidget {
               onPressed: audioPlayerLogic.skip,
               child: Text('SKIP'),
             ),
+            ElevatedButton(
+              onPressed: audioPlayerLogic.pause,
+              child: Text('PAUSE'),
+            ),
+            ElevatedButton(
+              onPressed: audioPlayerLogic.resume,
+              child: Text('RESUME'),
+            ),
           ],
         ),
       ),
