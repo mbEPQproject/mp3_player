@@ -20,7 +20,7 @@ class AudioTestUI extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                audioPlayerLogic.addToQueue('test_audio.mp3');
+                audioPlayerLogic.addToQueue('chirp_test_audio.mp3');
               },
               child: Text('ADD TO QUEUE'),
             ),
@@ -29,11 +29,7 @@ class AudioTestUI extends StatelessWidget {
               child: Text('SKIP'),
             ),
             ElevatedButton(
-              onPressed: audioPlayerLogic.pause,
-              child: Text('PAUSE'),
-            ),
-            ElevatedButton(
-              onPressed: audioPlayerLogic.resume,
+              onPressed: audioPlayerLogic.mainButtonPress,
               child: Text('RESUME'),
             ),
           ],

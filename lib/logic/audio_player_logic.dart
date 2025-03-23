@@ -7,6 +7,24 @@ class AudioPlayerLogic {
   List<String> queue = [];
   List<String> history = [];
 
+  AudioPlayerLogic() {
+    // STREAMS:
+
+    // if the player is playing, set isPlaying to true
+    audioPlayer.onPlayerStateChanged.listen((event) {
+      if (event == PlayerState.playing) {
+        isPlaying = true;
+      } else {
+        isPlaying = false;
+      }
+    });
+
+    // if the player completes a song, play the next song in the queue
+    audioPlayer.onPlayerComplete.listen((event) {
+      skip();
+    });
+  }
+
   Future<void> addToQueue(String songUrl) async {
     queue.add((songUrl));
 
@@ -27,24 +45,22 @@ class AudioPlayerLogic {
     if (queue.isEmpty) {
       print("Queue is empty.");
     } else {
-      audioPlayer.stop();
+      await audioPlayer.stop();
       history.add(queue[0]);
       queue.removeAt(0);
+      play();
     }
   }
 
-  void pause() async {
-    await audioPlayer.pause();
+  void mainButtonPress() async {
+    if (isPlaying) {
+      await audioPlayer.pause();
+    } else {
+      await audioPlayer.resume();
+    }
   }
-
-  void resume() async {
-    await audioPlayer.resume();
-  }
-
-  void buttonPress() async {}
 }
 
-//TODO: add logic buttonPress() to play if nothing is playing, pause if it is, and resume if it is paused
-//TODO: use streams in order to detect things like when a song ends, when a song is paused, etc.
-//TODO: make the audioplayer a late and instead create an initialiser for it which can also create an AudioState (or something) variable that can be used to detect if a song is playing n stuff
-//TODO: read through onenote page i made on 'getting started' to find out things you can add/change
+//TODO: adding playlists
+//TODO: adding liked songs/making playlists
+  // -> for this i may need to add a way to select more than one song through another screen
