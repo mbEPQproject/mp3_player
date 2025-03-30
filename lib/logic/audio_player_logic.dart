@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:mp3_player/data/globals.dart';
 
 class AudioPlayerLogic {
   bool isPlaying = false;
@@ -37,7 +38,9 @@ class AudioPlayerLogic {
     if (queue.isEmpty) {
       print("Queue is empty.");
     } else {
-      await audioPlayer.play(AssetSource(queue[0]));
+      await audioPlayer.play(
+        DeviceFileSource(Globals.mp3PlayerPath + queue[0]),
+      );
     }
   }
 
@@ -60,7 +63,3 @@ class AudioPlayerLogic {
     }
   }
 }
-
-//TODO: adding playlists
-//TODO: adding liked songs/making playlists
-  // -> for this i may need to add a way to select more than one song through another screen
