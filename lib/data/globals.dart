@@ -1,4 +1,4 @@
-import 'package:mp3_player/logic/albums.dart';
+import 'package:mp3_player/logic/objects/albums.dart';
 
 class Globals {
   static const String mp3PlayerPath =

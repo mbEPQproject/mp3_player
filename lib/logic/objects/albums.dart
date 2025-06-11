@@ -1,4 +1,4 @@
-import 'package:mp3_player/logic/songs.dart';
+import 'package:mp3_player/logic/objects/songs.dart';
 import 'package:mp3_player/data/globals.dart';
 
 class Album {
