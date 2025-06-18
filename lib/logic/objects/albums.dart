@@ -1,5 +1,4 @@
 import 'package:mp3_player/logic/objects/songs.dart';
-import 'package:mp3_player/data/globals.dart';
 
 class Album {
   List<Song> songs = [];
@@ -18,3 +17,13 @@ class Album {
 
   albumInitialiser() async {}
 }
+
+/*TODO: 
+  when loading in albums, you will go folder by folder through the 'music' folder
+  here, you can create an 'album' object. at this point, iterate through all of the songs adding them to the album object.
+  this will all happen for the specific artist so you can get their name from the folder directory above. after you finish all the albums
+  you will move to the next artist.
+
+  you can do this at the start in order to collect in all data then use ListView builder thing that the medium website talked about in order to
+  load everything in into a page (however u use that idk)
+*/
