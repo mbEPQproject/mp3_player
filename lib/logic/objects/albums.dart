@@ -26,4 +26,5 @@ class Album {
 
   you can do this at the start in order to collect in all data then use ListView builder thing that the medium website talked about in order to
   load everything in into a page (however u use that idk)
+  HOWEVER, first test without using ListView as you need to just learn how to take data from a random .mp3 into the program
 */
