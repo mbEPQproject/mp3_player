@@ -6,10 +6,10 @@ class Album {
 
   late String title;
   late String artist;
-  late String album;
 
   late String genre;
   late int year;
+  late int amountOfSongs;
 
   Album() {
     albumInitialiser();

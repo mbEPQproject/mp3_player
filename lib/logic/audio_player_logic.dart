@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:mp3_player/data/globals.dart';
 
 class AudioPlayerLogic {
   bool isPlaying = false;
@@ -38,9 +37,7 @@ class AudioPlayerLogic {
     if (queue.isEmpty) {
       print("Queue is empty.");
     } else {
-      await audioPlayer.play(
-        DeviceFileSource(Globals.mp3PlayerPath + queue[0]),
-      );
+      await audioPlayer.play(DeviceFileSource(queue[0]));
     }
   }
 

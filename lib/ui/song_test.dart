@@ -4,7 +4,7 @@ import 'package:mp3_player/logic/audio_player_logic.dart';
 class AudioTestUI extends StatelessWidget {
   AudioTestUI({super.key});
 
-  final String songurl = 'lib/data/Music/YUNG BRUH/LIKE ME/01 LIKE ME.mp3';
+  final String songurl = '/home/ohbowie/Downloads/music/test.mp3';
   final AudioPlayerLogic audioPlayerLogic = AudioPlayerLogic();
 
   @override

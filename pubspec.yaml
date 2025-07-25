@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  audioplayers: ^6.3.0
+  audioplayers: ^5.0.0
   audiotags: ^1.4.3
 
 dev_dependencies:
