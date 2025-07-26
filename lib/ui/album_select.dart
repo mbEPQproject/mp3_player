@@ -28,7 +28,7 @@ class _AlbumSelectState extends State<AlbumSelect> {
             return ListTile(
               leading: CircleAvatar(
                 backgroundImage: FileImage(
-                  File('/home/ohbowie/Downloads/example_cover.jpeg'),
+                  File(Globals.albums[index].albumArtPath),
                 ),
               ),
               title: Text(Globals.albums[index].title),
@@ -37,7 +37,7 @@ class _AlbumSelectState extends State<AlbumSelect> {
                   context,
                   listen: false,
                 );
-
+                // adds the first song to the queue
                 audioLogic.addToQueue(Globals.albums[index].songs[0].songPath);
                 //print(Globals.albums[index].songs[0].title);
               },
