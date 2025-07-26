@@ -38,6 +38,7 @@ class _AlbumSelectState extends State<AlbumSelect> {
                   listen: false,
                 );
                 // adds the first song to the queue
+                //TODO: change this to go into a screen that allows you to select from the songs in the album
                 audioLogic.addToQueue(Globals.albums[index].songs[0].songPath);
                 //print(Globals.albums[index].songs[0].title);
               },
