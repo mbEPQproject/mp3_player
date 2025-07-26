@@ -2,7 +2,7 @@ import 'package:mp3_player/logic/objects/songs.dart';
 
 class Album {
   List<Song> songs = [];
-  late Object albumArt;
+  late String albumArtPath;
 
   late String title;
   late String artist;

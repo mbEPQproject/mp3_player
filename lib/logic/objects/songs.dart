@@ -1,9 +1,13 @@
 // import 'package:audiotags/audiotags.dart';
 
 class Song {
-  late String songUrl;
+  late String songPath;
   late String title;
   late Object trackNumber;
 
-  Song(this.songUrl, this.title, this.trackNumber);
+  Song() {
+    songInitialiser();
+  }
+
+  songInitialiser() async {}
 }

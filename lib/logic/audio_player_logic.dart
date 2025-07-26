@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/material.dart';
 
-class AudioPlayerLogic {
+class AudioPlayerLogic extends ChangeNotifier {
   bool isPlaying = false;
   final AudioPlayer audioPlayer = AudioPlayer();
 
