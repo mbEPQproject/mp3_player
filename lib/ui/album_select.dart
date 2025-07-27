@@ -33,14 +33,15 @@ class _AlbumSelectState extends State<AlbumSelect> {
               ),
               title: Text(Globals.albums[index].title),
               onTap: () {
+                //TODO: change this to go into a screen that allows you to select from the songs in the album
+                /*
                 final audioLogic = Provider.of<AudioPlayerLogic>(
                   context,
                   listen: false,
                 );
                 // adds the first song to the queue
-                //TODO: change this to go into a screen that allows you to select from the songs in the album
-                audioLogic.addToQueue(Globals.albums[index].songs[0].songPath);
-                //print(Globals.albums[index].songs[0].title);
+                audioLogic.addToQueue(Globals.albums[index].songs[0].songPath); # test logic for playing songs - works
+                */
               },
             );
           },
