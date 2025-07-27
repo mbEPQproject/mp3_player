@@ -34,7 +34,7 @@ void main() async {
   );
 }
 
-// allows for lloading songs without needing to use the opening_loadingscreen as i dont know how to swtichf rom it
+// allows for lloading songs without needing to use the opening_loadingscreen as i dont know how to swtich from it
 void testLoadSongs() {
   Directory mainDir = Directory('/home/ohbowie/Downloads/music/');
   List<FileSystemEntity> artists = mainDir.listSync();
