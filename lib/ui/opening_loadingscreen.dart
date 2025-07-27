@@ -60,7 +60,7 @@ class _OpeningLoadingScreenState extends State<OpeningLoadingScreen> {
         Globals.albums.add(newAlbum);
       }
     }
-    await Future.delayed(const Duration(seconds: 5), () {});
+
     return true;
   }
 
