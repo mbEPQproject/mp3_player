@@ -1,3 +1,4 @@
+//TODO fix imports when im compiling app
 import 'package:flutter/material.dart';
 import 'package:mp3_player/ui/opening_loadingscreen.dart';
 // USE FOR ACTUAL APP import '/ui/opening_loadingscreen.dart';
@@ -10,17 +11,25 @@ import '/logic/objects/albums.dart';
 import '/logic/objects/songs.dart';
 import 'package:mp3_player/logic/audio_player_logic.dart';
 import 'package:provider/provider.dart';
+import 'ui/song_test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  testLoadSongs();
+  // testLoadSongs();
 
-  print(Globals.albums[0].songs[0].title);
+  //print(Globals.albums[0].songs[0].title);
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => AudioPlayerLogic(),
-      child: const AlbumSelect(),
+      child: MaterialApp(
+        home: const OpeningLoadingScreen(),
+        routes: {
+          '/album_select': (context) => AlbumSelect(),
+          '/song_test': (context) => AudioTestUI(),
+        },
+      ),
     ),
   );
 }
