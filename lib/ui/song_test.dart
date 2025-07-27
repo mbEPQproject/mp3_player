@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 class AudioTestUI extends StatelessWidget {
   AudioTestUI({super.key});
 
+  // example song doesnt exist anymore - ignore
   final String songurl = '/home/ohbowie/Downloads/music/test.mp3';
   final AudioPlayerLogic audioPlayerLogic = AudioPlayerLogic();
 
