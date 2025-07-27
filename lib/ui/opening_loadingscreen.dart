@@ -16,7 +16,7 @@ class OpeningLoadingScreen extends StatefulWidget {
 }
 
 class _OpeningLoadingScreenState extends State<OpeningLoadingScreen> {
-  void loadAllAlbums() async {
+  Future<bool> loadAllAlbums() async {
     Directory mainDir = Directory('/home/ohbowie/Downloads/music/');
     List<FileSystemEntity> artists = mainDir.listSync();
 
@@ -60,22 +60,31 @@ class _OpeningLoadingScreenState extends State<OpeningLoadingScreen> {
         Globals.albums.add(newAlbum);
       }
     }
+    await Future.delayed(const Duration(seconds: 5), () {});
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
-    loadAllAlbums();
-    for (var album in Globals.albums) {
-      print(
-        'Album: ${album.title}, Artist: ${album.artist}, Songs: ${album.amountOfSongs}, Album Art: ${album.albumArtPath}',
-      );
-      for (var song in album.songs) {
-        print('Song: ${song.title}, Path: ${song.songPath}');
-      }
-    }
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Center(child: CircularProgressIndicator(color: Colors.white)),
+    return DefaultTextStyle(
+      style: Theme.of(context).textTheme.displayMedium!,
+      child: FutureBuilder<bool>(
+        future: loadAllAlbums(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Navigator.pushReplacementNamed(context, '/song_test');
+            });
+          } else if (snapshot.hasError) {
+            return Center(child: Text('ERROR'));
+          }
+          // what shows when loading
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: Center(child: CircularProgressIndicator(color: Colors.white)),
+          );
+        },
+      ),
     );
   }
 }
