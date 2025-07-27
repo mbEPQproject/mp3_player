@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mp3_player/logic/audio_player_logic.dart';
+import 'package:provider/provider.dart';
 
 class AudioTestUI extends StatelessWidget {
   AudioTestUI({super.key});
@@ -26,11 +27,16 @@ class AudioTestUI extends StatelessWidget {
               child: Text('ADD TO QUEUE'),
             ),
             ElevatedButton(
-              onPressed: audioPlayerLogic.skip,
+              onPressed:
+                  Provider.of<AudioPlayerLogic>(context, listen: false).skip,
               child: Text('SKIP'),
             ),
             ElevatedButton(
-              onPressed: audioPlayerLogic.mainButtonPress,
+              onPressed:
+                  Provider.of<AudioPlayerLogic>(
+                    context,
+                    listen: false,
+                  ).mainButtonPress,
               child: Text('RESUME'),
             ),
             ElevatedButton(
