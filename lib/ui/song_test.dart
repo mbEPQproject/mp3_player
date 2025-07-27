@@ -33,6 +33,12 @@ class AudioTestUI extends StatelessWidget {
               onPressed: audioPlayerLogic.mainButtonPress,
               child: Text('RESUME'),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/album_select');
+              },
+              child: Text('ALBUM MENU'),
+            ),
           ],
         ),
       ),
