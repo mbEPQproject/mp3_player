@@ -12,6 +12,7 @@ import '/logic/objects/songs.dart';
 import 'package:mp3_player/logic/audio_player_logic.dart';
 import 'package:provider/provider.dart';
 import 'ui/song_test.dart';
+import 'ui/song_select.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,10 @@ void main() async {
         routes: {
           '/album_select': (context) => AlbumSelect(),
           '/song_test': (context) => AudioTestUI(),
+          '/song_select':
+              (context) => SongSelect(
+                album: ModalRoute.of(context)!.settings.arguments as Album,
+              ),
         },
       ),
     ),
