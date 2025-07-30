@@ -72,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       //TODO: give the app bar buttons functionality
+      //TOOD: make the app bar highlight when you're on its page
       appBar: AppBar(
         backgroundColor: Color(
           const Color.fromARGB(255, 236, 236, 236).toARGB32(),
