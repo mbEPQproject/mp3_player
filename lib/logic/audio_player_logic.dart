@@ -2,8 +2,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'objects/songs.dart';
 
-//TODO: change the queue/history logic from String to Song then make music play off of song.path not just path
-//TODO: when implementing adding to queue, make it add songs, not paths
 class AudioPlayerLogic extends ChangeNotifier {
   bool isPlaying = false;
   final AudioPlayer audioPlayer = AudioPlayer();
