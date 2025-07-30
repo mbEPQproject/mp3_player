@@ -17,7 +17,7 @@ class OpeningLoadingScreen extends StatefulWidget {
 
 class _OpeningLoadingScreenState extends State<OpeningLoadingScreen> {
   Future<bool> loadAllAlbums() async {
-    Directory mainDir = Directory('/home/ohbowie/Downloads/music/');
+    Directory mainDir = Directory('/home/ohbowie/Downloads/music_transfer/');
     List<FileSystemEntity> artists = mainDir.listSync();
 
     for (FileSystemEntity artist in artists) {
@@ -57,10 +57,14 @@ class _OpeningLoadingScreenState extends State<OpeningLoadingScreen> {
         if (newAlbum.albumArtPath == '') {
           newAlbum.albumArtPath = defaultAlbumArtPath;
         }
+
+        // sorting songs by track number
+        newAlbum.songs.sort((a, b) => a.title.compareTo(b.title));
         Globals.albums.add(newAlbum);
       }
     }
 
+    await Future.delayed(const Duration(seconds: 1), () {});
     return true;
   }
 
@@ -72,9 +76,15 @@ class _OpeningLoadingScreenState extends State<OpeningLoadingScreen> {
         future: loadAllAlbums(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              Navigator.pushReplacementNamed(context, '/song_test');
+            // results in song test being swapped to after 2 seconds (doesn't count the first) of displaying a checkmark
+            Future.delayed(const Duration(seconds: 3), () {
+              if (context.mounted) {
+                Navigator.pushReplacementNamed(context, '/song_test');
+              }
             });
+            return Center(
+              child: Icon(Icons.check, color: Colors.green, size: 100),
+            );
           } else if (snapshot.hasError) {
             return Center(child: Text('ERROR'));
           }
