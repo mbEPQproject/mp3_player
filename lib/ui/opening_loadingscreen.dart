@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '/logic/objects/albums.dart';
 import '/logic/objects/songs.dart';
 import '/data/globals.dart';
+import 'home.dart';
 
 const String defaultAlbumArtPath =
     '/home/ohbowie/Downloads/music/default_album_art.png';
@@ -76,10 +77,10 @@ class _OpeningLoadingScreenState extends State<OpeningLoadingScreen> {
         future: loadAllAlbums(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            // results in song test being swapped to after 2 seconds (doesn't count the first) of displaying a checkmark
-            Future.delayed(const Duration(seconds: 3), () {
+            // results in song test being swapped to after 2 seconds of displaying a checkmark
+            Future.delayed(const Duration(seconds: 2), () {
               if (context.mounted) {
-                Navigator.pushReplacementNamed(context, '/song_test');
+                Navigator.pushReplacementNamed(context, '/home_screen');
               }
             });
             return Center(
