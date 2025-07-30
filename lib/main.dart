@@ -1,5 +1,6 @@
-//TODO fix imports when im compiling app
+//TODO fix imports to only essentials across entire app
 import 'package:flutter/material.dart';
+import 'package:mp3_player/ui/home.dart';
 import 'package:mp3_player/ui/opening_loadingscreen.dart';
 // USE FOR ACTUAL APP import '/ui/opening_loadingscreen.dart';
 import 'ui/album_select.dart';
@@ -24,6 +25,7 @@ void main() async {
         debugShowCheckedModeBanner: false,
         home: const OpeningLoadingScreen(),
         routes: {
+          '/home_screen': (context) => HomeScreen(),
           '/album_select': (context) => AlbumSelect(),
           '/song_test': (context) => AudioTestUI(),
           '/song_select':
