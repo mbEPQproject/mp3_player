@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-//TODO: everything needs to update dynamically as songs get queue'd up
+//TODO: everything needs to update dynamically as songs get queue'd up -> potentially put current cover/title/artist into provider to setstate from there
 
 class _HomeScreenState extends State<HomeScreen> {
   bool testFunction() {
