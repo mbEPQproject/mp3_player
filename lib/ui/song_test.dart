@@ -23,7 +23,8 @@ class AudioTestUI extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                audioPlayerLogic.addToQueue(songurl);
+                //audioPlayerLogic.addToQueue(songurl);
+                // button now completely doesnt work
               },
               child: Text('ADD TO QUEUE'),
             ),
