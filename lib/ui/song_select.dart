@@ -35,7 +35,7 @@ class _SongSelectState extends State<SongSelect> {
                 Provider.of<AudioPlayerLogic>(
                   context,
                   listen: false,
-                ).addToQueue(album.songs[index].songPath);
+                ).addToQueue(album.songs[index]);
               },
             ),
       ),
