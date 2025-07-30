@@ -3,6 +3,7 @@
 class Song {
   late String songPath;
   late String title;
+  late String albumArtPath;
   late int trackNumber;
 
   Song() {

@@ -48,6 +48,7 @@ class _OpeningLoadingScreenState extends State<OpeningLoadingScreen> {
           newSong.songPath = file.path;
           newSong.title = file.path.substring(albumDir.path.length + 1);
           newSong.trackNumber = count + 1;
+          newSong.albumArtPath = '';
 
           newAlbum.songs.add(newSong);
 
@@ -57,6 +58,10 @@ class _OpeningLoadingScreenState extends State<OpeningLoadingScreen> {
 
         if (newAlbum.albumArtPath == '') {
           newAlbum.albumArtPath = defaultAlbumArtPath;
+        } else {
+          for (int i = 0; i < newAlbum.songs.length; i++) {
+            newAlbum.songs[i].albumArtPath = newAlbum.albumArtPath;
+          }
         }
 
         // sorting songs by track number
