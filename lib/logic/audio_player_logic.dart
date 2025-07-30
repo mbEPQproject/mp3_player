@@ -1,12 +1,15 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'objects/songs.dart';
 
+//TODO: change the queue/history logic from String to Song then make music play off of song.path not just path
+//TODO: when implementing adding to queue, make it add songs, not paths
 class AudioPlayerLogic extends ChangeNotifier {
   bool isPlaying = false;
   final AudioPlayer audioPlayer = AudioPlayer();
 
-  List<String> queue = [];
-  List<String> history = [];
+  List<Song> queue = [];
+  List<Song> history = [];
 
   AudioPlayerLogic() {
     // STREAMS:
@@ -26,8 +29,8 @@ class AudioPlayerLogic extends ChangeNotifier {
     });
   }
 
-  Future<void> addToQueue(String songUrl) async {
-    queue.add((songUrl));
+  Future<void> addToQueue(Song song) async {
+    queue.add((song));
 
     if (queue.length == 1) {
       play();
@@ -38,7 +41,7 @@ class AudioPlayerLogic extends ChangeNotifier {
     if (queue.isEmpty) {
       print("Queue is empty.");
     } else {
-      await audioPlayer.play(DeviceFileSource(queue[0]));
+      await audioPlayer.play(DeviceFileSource(queue[0].songPath));
     }
   }
 
