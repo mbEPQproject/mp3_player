@@ -3,7 +3,7 @@
 class Song {
   late String songPath;
   late String title;
-  late Object trackNumber;
+  late int trackNumber;
 
   Song() {
     songInitialiser();
