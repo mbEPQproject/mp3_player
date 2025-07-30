@@ -24,10 +24,14 @@ class _SongSelectState extends State<SongSelect> {
         itemCount: album.songs.length,
         itemBuilder:
             (context, index) => ListTile(
-              title: Text(album.songs[index].title),
+              title: Text(
+                album.songs[index].title.substring(
+                  0,
+                  album.songs[index].title.length - 4,
+                ),
+              ),
               subtitle: Text(album.artist),
               onTap: () {
-                // TODO: make it queue up the song via provider
                 Provider.of<AudioPlayerLogic>(
                   context,
                   listen: false,
