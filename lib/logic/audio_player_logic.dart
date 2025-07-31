@@ -36,6 +36,23 @@ class AudioPlayerLogic extends ChangeNotifier {
   //END OF STREAMS
 
   // NON-STREAMS:
+  void updateUI() {
+    if (queue.isEmpty) {
+      currentCover =
+          '/home/ohbowie/Downloads/music_transfer/default_album_art.png';
+      currentTitle = 'No Album Selected';
+      currentArtist = 'No Album Selected';
+    } else {
+      currentCover = queue[0].albumArtPath;
+      currentTitle = queue[0].title.substring(
+        3,
+        queue[0].title.length - 4,
+      ); // trims numbers from start and .mp3 from end
+      currentArtist = queue[0].artist;
+    }
+    notifyListeners();
+  }
+
   Future<void> addToQueue(Song song) async {
     queue.add((song));
 
@@ -47,33 +64,36 @@ class AudioPlayerLogic extends ChangeNotifier {
   void play() async {
     if (queue.isEmpty) {
       print("Queue is empty.");
-      defaultValues();
+      updateUI();
       return;
     } else {
       await audioPlayer.play(DeviceFileSource(queue[0].songPath));
 
-      currentCover = queue[0].albumArtPath;
-      currentTitle = queue[0].title.substring(
-        3,
-        queue[0].title.length - 4,
-      ); // trims numbers from start and .mp3 from end
-      currentArtist = queue[0].artist;
-      notifyListeners();
+      updateUI();
     }
   }
 
-  void defaultValues() async {
-    currentCover =
-        '/home/ohbowie/Downloads/music_transfer/default_album_art.png';
-    currentTitle = 'No Album Selected';
-    currentArtist = 'No Album Selected';
-    notifyListeners();
+  void previousSong() async {
+    if (isPlaying == true) {
+      await audioPlayer.pause();
+      await audioPlayer.seek(Duration.zero);
+      return;
+    }
+
+    if (history.isEmpty) {
+      print("History is empty.");
+      return;
+    }
+
+    Song lastSong = history.removeLast();
+    queue.insert(0, lastSong);
+    play();
   }
 
   void skip() async {
     if (queue.isEmpty) {
       print("Queue is empty.");
-      defaultValues();
+      updateUI();
     } else {
       await audioPlayer.stop();
       history.add(queue[0]);
@@ -81,15 +101,6 @@ class AudioPlayerLogic extends ChangeNotifier {
       play();
     }
   }
-
-  /*
-  TODO: add a 'previous' button, which goes to the start of the song (pausing it) if a song is playing, and puts the last song from history into queue[0] and plays it
-    o list.insert(0, history[history.length]) allows you to put it to the start
-    
-    remove from end of history
-    insert into start of queue
-    play song?
-  */
 
   void mainButtonPress() async {
     if (queue.isEmpty) {
