@@ -25,6 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var audioPlayerLogic = Provider.of<AudioPlayerLogic>(
+      context,
+      listen: false,
+    );
+
     return Scaffold(
       //TODO: give the app bar buttons functionality
       appBar: AppBar(
@@ -75,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       //TODO: give the buttons functionality
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Consumer<AudioPlayerLogic>(
@@ -129,7 +134,29 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          //TODO: here - below the row - add a volume slider
+          SliderTheme(
+            data: SliderThemeData(
+              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0),
+              overlayColor: Colors.transparent,
+            ),
+            child: Slider(
+              divisions: 100,
+              label: '${(audioPlayerLogic.currentVolume * 100).toInt()}%',
+              value: audioPlayerLogic.currentVolume,
+              onChanged: (value) {
+                setState(() => audioPlayerLogic.currentVolume = value);
+              },
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(right: 20),
+            alignment: Alignment.centerRight,
+            child: Text(
+              '${(audioPlayerLogic.currentVolume * 100).toInt()}%',
+              textAlign: TextAlign.end,
+              style: TextStyle(height: -0.75),
+            ),
+          ),
         ],
       ),
     );
