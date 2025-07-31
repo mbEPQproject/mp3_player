@@ -1,4 +1,7 @@
-//TODO fix imports to only essentials across entire app
+/* TODO WHEN COMPLETED APP
+o fix imports to only essentials across entire app
+
+*/
 import 'package:flutter/material.dart';
 import 'package:mp3_player/ui/home.dart';
 import 'package:mp3_player/ui/opening_loadingscreen.dart';
