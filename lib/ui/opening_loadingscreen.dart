@@ -49,6 +49,7 @@ class _OpeningLoadingScreenState extends State<OpeningLoadingScreen> {
           newSong.title = file.path.substring(albumDir.path.length + 1);
           newSong.trackNumber = count + 1;
           newSong.albumArtPath = '';
+          newSong.artist = newAlbum.artist;
 
           newAlbum.songs.add(newSong);
 
