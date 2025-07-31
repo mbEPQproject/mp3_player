@@ -47,6 +47,8 @@ class AudioPlayerLogic extends ChangeNotifier {
   void play() async {
     if (queue.isEmpty) {
       print("Queue is empty.");
+      defaultValues();
+      return;
     } else {
       await audioPlayer.play(DeviceFileSource(queue[0].songPath));
 
@@ -60,20 +62,40 @@ class AudioPlayerLogic extends ChangeNotifier {
     }
   }
 
+  void defaultValues() async {
+    currentCover =
+        '/home/ohbowie/Downloads/music_transfer/default_album_art.png';
+    currentTitle = 'No Album Selected';
+    currentArtist = 'No Album Selected';
+    notifyListeners();
+  }
+
   void skip() async {
     if (queue.isEmpty) {
       print("Queue is empty.");
+      defaultValues();
     } else {
       await audioPlayer.stop();
       history.add(queue[0]);
       queue.removeAt(0);
       play();
     }
-
-    //notifyListeners(); -- doesnt require this as it will be in queue if the person is playing a song anyways
   }
 
+  /*
+  TODO: add a 'previous' button, which goes to the start of the song (pausing it) if a song is playing, and puts the last song from history into queue[0] and plays it
+    o list.insert(0, history[history.length]) allows you to put it to the start
+    
+    remove from end of history
+    insert into start of queue
+    play song?
+  */
+
   void mainButtonPress() async {
+    if (queue.isEmpty) {
+      print("Queue is empty.");
+      return;
+    }
     if (isPlaying) {
       await audioPlayer.pause();
     } else {
