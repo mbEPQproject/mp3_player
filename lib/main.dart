@@ -1,6 +1,6 @@
-/* TODO WHEN COMPLETED APP
+/* TODO: WHEN COMPLETED APP
 o fix imports to only essentials across entire app
-
+o remove all print statements
 */
 import 'package:flutter/material.dart';
 import 'package:mp3_player/ui/home.dart';
