@@ -150,7 +150,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: Slider(
               divisions: 100,
-              label: '${(audioPlayerLogic.currentVolume * 100).toInt()}%',
               value: audioPlayerLogic.currentVolume,
               onChanged: (value) {
                 setState(() => audioPlayerLogic.currentVolume = value);
