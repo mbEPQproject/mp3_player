@@ -13,8 +13,6 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-//TODO: everything needs to update dynamically as songs get queue'd up -> potentially put current cover/title/artist into provider to setstate from there
-
 class _HomeScreenState extends State<HomeScreen> {
   bool testFunction() {
     print('button pressed');
@@ -25,54 +23,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return true;
   }
 
-  String getAlbumArt() {
-    String albumArtPath =
-        '/home/ohbowie/Downloads/music_transfer/default_album_art.png';
-
-    if (Provider.of<AudioPlayerLogic>(
-      context,
-      listen: false,
-    ).queue.isNotEmpty) {
-      albumArtPath =
-          Provider.of<AudioPlayerLogic>(
-            context,
-            listen: false,
-          ).queue[0].albumArtPath;
-    }
-    return albumArtPath;
-  }
-
-  String getAlbumTitle() {
-    String albumTitle = 'No Album Selected';
-
-    if (Provider.of<AudioPlayerLogic>(
-      context,
-      listen: false,
-    ).queue.isNotEmpty) {
-      albumTitle =
-          Provider.of<AudioPlayerLogic>(context, listen: false).queue[0].title;
-    }
-    return albumTitle;
-  }
-
-  String getAlbumArtist() {
-    String albumArtist = 'No Album Selected';
-
-    if (Provider.of<AudioPlayerLogic>(
-      context,
-      listen: false,
-    ).queue.isNotEmpty) {
-      albumArtist = 'PLACEHOLDER';
-      //Provider.of<AudioPlayerLogic>(context, listen: false).queue[0].artist;
-    }
-    return albumArtist;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //TODO: give the app bar buttons functionality
-      //TOOD: make the app bar highlight when you're on its page
       appBar: AppBar(
         backgroundColor: Color(
           const Color.fromARGB(255, 236, 236, 236).toARGB32(),
@@ -87,6 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: testFunction,
                 style: ButtonStyle(
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
+                  backgroundColor: WidgetStateProperty.all(
+                    Color.fromARGB(255, 221, 221, 221),
+                  ),
                 ),
                 child: Text('Home'),
               ),
@@ -116,29 +73,44 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+      //TODO: give the buttons functionality
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            heightFactor: 1.25,
-            child: SizedBox(
-              height: 240,
-              width: 240,
-              child: Image.file(File(getAlbumArt())),
-            ),
+          Consumer<AudioPlayerLogic>(
+            builder:
+                (context, value, child) => Center(
+                  heightFactor: 1.25,
+                  child: SizedBox(
+                    height: 240,
+                    width: 240,
+                    child: Image.file(File(value.currentCover)),
+                  ),
+                ),
           ),
-          Container(
-            margin: EdgeInsets.only(right: 132),
-            child: Text(
-              getAlbumTitle(),
-              style: TextStyle(height: -3.5, fontSize: 12),
-            ),
+          Consumer<AudioPlayerLogic>(
+            builder:
+                (context, value, child) => Container(
+                  margin: EdgeInsets.only(left: 55),
+                  child: Text(
+                    value.currentTitle,
+                    style: TextStyle(height: -3.5, fontSize: 12),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
           ),
-          Container(
-            margin: EdgeInsets.only(right: 148),
-            child: Text(
-              getAlbumArtist(),
-              style: TextStyle(height: -1.5, fontSize: 10),
-            ),
+          //TODO: find out how to move this text without moving the rest of the things in the app
+          Consumer<AudioPlayerLogic>(
+            builder:
+                (context, value, child) => Container(
+                  margin: EdgeInsets.only(left: 55),
+                  child: Text(
+                    value.currentArtist,
+                    style: TextStyle(height: -1.5, fontSize: 10),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

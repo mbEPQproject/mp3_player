@@ -9,6 +9,12 @@ class AudioPlayerLogic extends ChangeNotifier {
   List<Song> queue = [];
   List<Song> history = [];
 
+  int currentVolume = 1;
+  String currentCover =
+      '/home/ohbowie/Downloads/music_transfer/default_album_art.png';
+  String currentTitle = 'No Album Selected';
+  String currentArtist = 'No Album Selected';
+
   AudioPlayerLogic() {
     // STREAMS:
 
@@ -27,6 +33,9 @@ class AudioPlayerLogic extends ChangeNotifier {
     });
   }
 
+  //END OF STREAMS
+
+  // NON-STREAMS:
   Future<void> addToQueue(Song song) async {
     queue.add((song));
 
@@ -40,6 +49,14 @@ class AudioPlayerLogic extends ChangeNotifier {
       print("Queue is empty.");
     } else {
       await audioPlayer.play(DeviceFileSource(queue[0].songPath));
+
+      currentCover = queue[0].albumArtPath;
+      currentTitle = queue[0].title.substring(
+        3,
+        queue[0].title.length - 4,
+      ); // trims numbers from start and .mp3 from end
+      currentArtist = queue[0].artist;
+      notifyListeners();
     }
   }
 
@@ -52,6 +69,8 @@ class AudioPlayerLogic extends ChangeNotifier {
       queue.removeAt(0);
       play();
     }
+
+    //notifyListeners(); -- doesnt require this as it will be in queue if the person is playing a song anyways
   }
 
   void mainButtonPress() async {
