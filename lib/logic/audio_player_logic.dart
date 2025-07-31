@@ -9,7 +9,7 @@ class AudioPlayerLogic extends ChangeNotifier {
   List<Song> queue = [];
   List<Song> history = [];
 
-  int currentVolume = 1;
+  double currentVolume = 1;
   String currentCover =
       '/home/ohbowie/Downloads/music_transfer/default_album_art.png';
   String currentTitle = 'No Album Selected';
