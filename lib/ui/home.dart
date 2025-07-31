@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       //TODO: make all of home visually pleasing
       body: Column(
-        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Consumer<AudioPlayerLogic>(
@@ -94,7 +94,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: SizedBox(
                     height: 240,
                     width: 240,
-                    child: Image.file(File(value.currentCover)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Image.file(File(value.currentCover)),
+                    ),
                   ),
                 ),
           ),
@@ -104,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: EdgeInsets.only(left: 55),
                   child: Text(
                     value.currentTitle,
-                    style: TextStyle(height: -3.5, fontSize: 12),
+                    style: TextStyle(height: -3.5, fontSize: 16),
                     textAlign: TextAlign.left,
                   ),
                 ),
@@ -115,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: EdgeInsets.only(left: 55),
                   child: Text(
                     value.currentArtist,
-                    style: TextStyle(height: -1.5, fontSize: 10),
+                    style: TextStyle(height: -4.5, fontSize: 12),
                     textAlign: TextAlign.left,
                   ),
                 ),
@@ -160,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text(
               '${(audioPlayerLogic.currentVolume * 100).toInt()}%',
               textAlign: TextAlign.end,
-              style: TextStyle(height: -0.75),
+              style: TextStyle(height: -3.1),
             ),
           ),
         ],
