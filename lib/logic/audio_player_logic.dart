@@ -80,7 +80,8 @@ class AudioPlayerLogic extends ChangeNotifier {
   }
 
   void previousSong() async {
-    if (isPlaying == true) {
+    if (isPlaying == true ||
+        await audioPlayer.getCurrentPosition() != Duration.zero) {
       await audioPlayer.pause();
       await audioPlayer.seek(Duration.zero);
       return;
