@@ -20,6 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
       context,
       listen: false,
     ).addToQueue(Globals.albums[0].songs[0]);
+    Provider.of<AudioPlayerLogic>(
+      context,
+      listen: false,
+    ).addToQueue(Globals.albums[6].songs[0]);
     return true;
   }
 
@@ -31,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     return Scaffold(
-      //TODO: give the app bar buttons functionality
+      //TODO: give the app bar buttons correct functionality
       appBar: AppBar(
         backgroundColor: Color(
           const Color.fromARGB(255, 236, 236, 236).toARGB32(),
@@ -122,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               //TODO: make 'previous song' button function
               IconButton(
-                onPressed: testFunction,
+                onPressed: audioPlayerLogic.previousSong,
                 icon: Icon(Icons.arrow_left_rounded, size: 80),
               ),
               IconButton(
