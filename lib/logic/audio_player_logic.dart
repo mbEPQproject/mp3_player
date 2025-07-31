@@ -64,13 +64,10 @@ class AudioPlayerLogic extends ChangeNotifier {
   void play() async {
     if (queue.isEmpty) {
       print("Queue is empty.");
-      updateUI();
-      return;
     } else {
       await audioPlayer.play(DeviceFileSource(queue[0].songPath));
-
-      updateUI();
     }
+    updateUI();
   }
 
   void previousSong() async {
