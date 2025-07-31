@@ -82,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+      //TODO: make all of home visually pleasing
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,8 +109,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
           ),
-
-          //TODO: find out how to move this text without moving the rest of the things in the app
           Consumer<AudioPlayerLogic>(
             builder:
                 (context, value, child) => Container(
@@ -124,14 +123,16 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              //TODO: make 'previous song' button function
               IconButton(
                 onPressed: audioPlayerLogic.previousSong,
                 icon: Icon(Icons.arrow_left_rounded, size: 80),
               ),
-              IconButton(
-                onPressed: audioPlayerLogic.mainButtonPress,
-                icon: Icon(Icons.play_arrow_rounded, size: 80),
+              Consumer<AudioPlayerLogic>(
+                builder:
+                    (context, value, child) => IconButton(
+                      onPressed: audioPlayerLogic.mainButtonPress,
+                      icon: audioPlayerLogic.getIcon(),
+                    ),
               ),
               IconButton(
                 onPressed: audioPlayerLogic.skip,

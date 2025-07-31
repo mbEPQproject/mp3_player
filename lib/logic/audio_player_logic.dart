@@ -25,6 +25,7 @@ class AudioPlayerLogic extends ChangeNotifier {
       } else {
         isPlaying = false;
       }
+      updateUI();
     });
 
     // if the player completes a song, play the next song in the queue
@@ -51,6 +52,14 @@ class AudioPlayerLogic extends ChangeNotifier {
       currentArtist = queue[0].artist;
     }
     notifyListeners();
+  }
+
+  Icon getIcon() {
+    if (isPlaying) {
+      return Icon(Icons.pause_rounded, size: 80);
+    } else {
+      return Icon(Icons.play_arrow_rounded, size: 80);
+    }
   }
 
   Future<void> addToQueue(Song song) async {
