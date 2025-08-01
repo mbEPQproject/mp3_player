@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Color.fromARGB(255, 221, 221, 221),
                   ),
                 ),
-                child: Text('Home'),
+                child: Text('Home', style: TextStyle(fontSize: 20)),
               ),
             ),
             SizedBox(
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: ButtonStyle(
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
                 ),
-                child: Text('Queue'),
+                child: Text('Queue', style: TextStyle(fontSize: 20)),
               ),
             ),
             SizedBox(
@@ -74,12 +74,21 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 100,
               child: TextButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/albums_screen');
+                  Provider.of<AudioPlayerLogic>(
+                    context,
+                    listen: false,
+                  ).addToQueue(Globals.albums[2].songs[2]);
+                  Provider.of<AudioPlayerLogic>(
+                    context,
+                    listen: false,
+                  ).addToQueue(Globals.albums[6].songs[2]);
+                  //TODO: fix this back - using this as song add test
+                  //Navigator.pushReplacementNamed(context, '/albums_screen');
                 },
                 style: ButtonStyle(
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
                 ),
-                child: Text('Albums'),
+                child: Text('Albums', style: TextStyle(fontSize: 20)),
               ),
             ),
           ],
@@ -209,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           IconButton(
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/history_screen');
+              Navigator.pushNamed(context, '/history_screen', arguments: ());
             },
             icon: Icon(Icons.menu_book_rounded),
           ),
