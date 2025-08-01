@@ -1,15 +1,21 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'objects/songs.dart';
+import 'dart:async';
 
 class AudioPlayerLogic extends ChangeNotifier {
   bool isPlaying = false;
   final AudioPlayer audioPlayer = AudioPlayer();
 
+  late Timer timer;
+
   List<Song> queue = [];
   List<Song> history = [];
 
   double currentVolume = 1;
+  double currentDuration =
+      100; // starts at a higher number to not cause error during initialisation
+  double currentPosition = 0;
   String currentCover =
       '/home/ohbowie/Downloads/music_transfer/default_album_art.png';
   String currentTitle = 'No Album Selected';
@@ -22,8 +28,10 @@ class AudioPlayerLogic extends ChangeNotifier {
     audioPlayer.onPlayerStateChanged.listen((event) {
       if (event == PlayerState.playing) {
         isPlaying = true;
+        launchTimer();
       } else {
         isPlaying = false;
+        timer.cancel();
       }
       updateUI();
     });
@@ -32,11 +40,38 @@ class AudioPlayerLogic extends ChangeNotifier {
     audioPlayer.onPlayerComplete.listen((event) {
       skip();
     });
+
+    audioPlayer.onDurationChanged.listen((Duration duration) {
+      currentDuration = duration.inSeconds.toDouble();
+      updateUI();
+    });
+
+    audioPlayer.onPositionChanged.listen((Duration position) {
+      if (currentDuration == 0) return;
+      currentPosition = position.inSeconds.toDouble();
+      updateUI();
+    });
   }
 
   //END OF STREAMS
 
   // NON-STREAMS:
+  void launchTimer() {
+    timer = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+      currentPosition = await audioPlayer.getCurrentPosition().then((value) {
+        if (value == null) return 0.0;
+        return value.inSeconds.toDouble();
+      });
+      updateUI();
+    });
+  }
+
+  void updatePosition(double position) {
+    currentPosition = position;
+    audioPlayer.seek(Duration(seconds: position.toInt()));
+    updateUI();
+  }
+
   void updateUI() {
     if (queue.isEmpty) {
       currentCover =
