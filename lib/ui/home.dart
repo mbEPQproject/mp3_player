@@ -123,6 +123,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
           ),
+          Consumer<AudioPlayerLogic>(
+            builder:
+                (context, value, child) => SliderTheme(
+                  data: SliderThemeData(
+                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 4),
+                    overlayColor: Colors.transparent,
+                  ),
+                  child: Slider(
+                    min: 0,
+                    max: value.currentDuration,
+                    divisions: 100,
+                    value: value.currentPosition,
+                    onChanged: (val) => {},
+                    onChangeEnd: (val) {
+                      value.updatePosition(val);
+                    },
+                  ),
+                ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -164,6 +183,11 @@ class _HomeScreenState extends State<HomeScreen> {
               textAlign: TextAlign.end,
               style: TextStyle(height: -3.1),
             ),
+          ),
+          //TODO: add history button functionality
+          IconButton(
+            onPressed: testFunction,
+            icon: Icon(Icons.menu_book_rounded),
           ),
         ],
       ),
