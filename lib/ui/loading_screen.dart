@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '/logic/objects/albums.dart';
 import '/logic/objects/songs.dart';
 import '/data/globals.dart';
-import 'home.dart';
+import 'home_screen.dart';
 
 const String defaultAlbumArtPath =
     '/home/ohbowie/Downloads/music/default_album_art.png';
