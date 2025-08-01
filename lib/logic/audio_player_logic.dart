@@ -72,6 +72,11 @@ class AudioPlayerLogic extends ChangeNotifier {
     updateUI();
   }
 
+  void changeVolume(double position) {
+    audioPlayer.setVolume(position);
+    currentVolume = position;
+  }
+
   void updateUI() {
     if (queue.isEmpty) {
       currentCover =
@@ -212,7 +217,10 @@ class AudioPlayerLogic extends ChangeNotifier {
     Song songSelected = userHistory[index];
 
     if (whereTo == 'top') {
-      queue.insert(0, songSelected);
+      if (queue.isEmpty) {
+        addToQueue(songSelected);
+      }
+      queue.insert(1, songSelected);
       if (queue.length == 1) {
         play();
       }

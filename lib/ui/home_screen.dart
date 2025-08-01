@@ -194,18 +194,21 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          SliderTheme(
-            data: SliderThemeData(
-              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0),
-              overlayColor: Colors.transparent,
-            ),
-            child: Slider(
-              divisions: 100,
-              value: audioPlayerLogic.currentVolume,
-              onChanged: (value) {
-                setState(() => audioPlayerLogic.currentVolume = value);
-              },
-            ),
+          Consumer<AudioPlayerLogic>(
+            builder:
+                (context, value, child) => SliderTheme(
+                  data: SliderThemeData(
+                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 0),
+                    overlayColor: Colors.transparent,
+                  ),
+                  child: Slider(
+                    divisions: 100,
+                    value: value.currentVolume,
+                    onChanged: (val) {
+                      setState(() => value.changeVolume(val));
+                    },
+                  ),
+                ),
           ),
           Container(
             padding: EdgeInsets.only(right: 20),
