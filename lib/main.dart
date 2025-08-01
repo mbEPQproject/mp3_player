@@ -30,7 +30,6 @@ void main() async {
         routes: {
           '/home_screen': (context) => HomeScreen(),
           '/album_select': (context) => AlbumSelect(),
-          '/song_test': (context) => AudioTestUI(),
           '/song_select':
               (context) => SongSelect(
                 album: ModalRoute.of(context)!.settings.arguments as Album,
