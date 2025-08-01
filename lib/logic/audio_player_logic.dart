@@ -14,7 +14,7 @@ class AudioPlayerLogic extends ChangeNotifier {
 
   double currentVolume = 1;
   double currentDuration =
-      100; // starts at a higher number to not cause error during initialisation
+      1; // starts at a number to not cause error during initialisation
   double currentPosition = 0;
   String currentCover =
       '/home/ohbowie/Downloads/music_transfer/default_album_art.png';
@@ -57,7 +57,7 @@ class AudioPlayerLogic extends ChangeNotifier {
 
   // NON-STREAMS:
   void launchTimer() {
-    timer = Timer.periodic(Duration(milliseconds: 1000), (timer) async {
+    timer = Timer.periodic(Duration(milliseconds: 200), (timer) async {
       currentPosition = await audioPlayer.getCurrentPosition().then((value) {
         if (value == null) return 0.0;
         return value.inSeconds.toDouble();
@@ -115,15 +115,15 @@ class AudioPlayerLogic extends ChangeNotifier {
   }
 
   void previousSong() async {
+    if (history.isEmpty) {
+      print("History is empty.");
+      return;
+    }
+
     if (isPlaying == true ||
         await audioPlayer.getCurrentPosition() != Duration.zero) {
       await audioPlayer.pause();
       await audioPlayer.seek(Duration.zero);
-      return;
-    }
-
-    if (history.isEmpty) {
-      print("History is empty.");
       return;
     }
 
@@ -154,5 +154,49 @@ class AudioPlayerLogic extends ChangeNotifier {
     } else {
       await audioPlayer.resume();
     }
+  }
+
+  String getCurrentTimeForUI() {
+    if (currentDuration == 1) {
+      return '00:00';
+    }
+
+    int minutes = (currentPosition ~/ 60);
+    int seconds = (currentPosition % 60).toInt();
+
+    String minutesPart;
+    minutesPart = minutes.toString();
+    if (minutesPart.length == 1) {
+      minutesPart = '0$minutesPart';
+    }
+    String secondsPart;
+    secondsPart = seconds.toString();
+    if (secondsPart.length == 1) {
+      secondsPart = '0$secondsPart';
+    }
+
+    return '$minutesPart:$secondsPart';
+  }
+
+  String getCurrentDurationForUI() {
+    if (currentDuration == 1) {
+      return '00:00';
+    }
+
+    int minutes = (currentDuration ~/ 60);
+    int seconds = (currentDuration % 60).toInt();
+
+    String minutesPart;
+    minutesPart = minutes.toString();
+    if (minutesPart.length == 1) {
+      minutesPart = '0$minutesPart';
+    }
+    String secondsPart;
+    secondsPart = seconds.toString();
+    if (secondsPart.length == 1) {
+      secondsPart = '0$secondsPart';
+    }
+
+    return '$minutesPart:$secondsPart';
   }
 }
