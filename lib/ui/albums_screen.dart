@@ -15,4 +15,3 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
     return const Placeholder();
   }
 }
-//TODO: make a songs screen

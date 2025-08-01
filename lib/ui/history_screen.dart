@@ -1,8 +1,4 @@
-//TODO: make a history screen
-
 import 'package:flutter/material.dart';
-import '/logic/objects/albums.dart';
-import '/logic/objects/songs.dart';
 import 'package:provider/provider.dart';
 import 'package:mp3_player/logic/audio_player_logic.dart';
 import 'dart:io';
