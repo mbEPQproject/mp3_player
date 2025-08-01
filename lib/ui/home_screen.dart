@@ -148,7 +148,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     value: value.currentPosition,
                     onChanged: (val) => {},
                     onChangeEnd: (val) {
-                      value.updatePosition(val);
+                      if (value.currentDuration == 1) {
+                        null;
+                      } else {
+                        value.updatePosition(val);
+                      }
                     },
                   ),
                 ),
@@ -178,7 +182,9 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                onPressed: audioPlayerLogic.previousSong,
+                onPressed: () {
+                  audioPlayerLogic.previousSong;
+                },
                 icon: Icon(Icons.arrow_left_rounded, size: 80),
               ),
               Consumer<AudioPlayerLogic>(

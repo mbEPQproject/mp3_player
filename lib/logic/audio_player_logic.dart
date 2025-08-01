@@ -83,6 +83,8 @@ class AudioPlayerLogic extends ChangeNotifier {
           '/home/ohbowie/Downloads/music_transfer/default_album_art.png';
       currentTitle = 'No Album Selected';
       currentArtist = 'No Album Selected';
+      currentPosition = 0;
+      currentDuration = 1;
     } else {
       currentCover = queue[0].albumArtPath;
       currentTitle = queue[0].title.substring(
