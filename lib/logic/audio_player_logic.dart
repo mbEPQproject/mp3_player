@@ -199,4 +199,29 @@ class AudioPlayerLogic extends ChangeNotifier {
 
     return '$minutesPart:$secondsPart';
   }
+
+  List<Song> getHistory() {
+    // returned reversed so that the visualisation looks correct (songs coming in at the top)
+    return history.reversed.toList();
+  }
+
+  void addFromHistory(String whereTo, int index) {
+    // list that the user views in history is upside down
+    // get original queue, reverse, take out the index - inserting into queue, reverse again, insert as queue
+    List<Song> userHistory = history.reversed.toList();
+    Song songSelected = userHistory[index];
+
+    if (whereTo == 'top') {
+      queue.insert(0, songSelected);
+      if (queue.length == 1) {
+        play();
+      }
+    } else if (whereTo == 'bottom') {
+      addToQueue(songSelected);
+    }
+
+    userHistory.removeAt(index);
+    history = userHistory.reversed.toList();
+    notifyListeners();
+  }
 }
