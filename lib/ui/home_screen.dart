@@ -35,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     return Scaffold(
-      //TODO: give the app bar buttons correct functionality
       appBar: AppBar(
         backgroundColor: Color(
           const Color.fromARGB(255, 236, 236, 236).toARGB32(),
@@ -47,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 50,
               width: 100,
               child: TextButton(
-                onPressed: testFunction,
+                onPressed: () {},
                 style: ButtonStyle(
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
                   backgroundColor: WidgetStateProperty.all(
@@ -61,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 50,
               width: 100,
               child: TextButton(
-                onPressed: testFunction,
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/queue_screen');
+                },
                 style: ButtonStyle(
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
                 ),
@@ -72,7 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 50,
               width: 100,
               child: TextButton(
-                onPressed: testFunction,
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/albums_screen');
+                },
                 style: ButtonStyle(
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
                 ),
@@ -82,7 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      //TODO: make all of home visually pleasing
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -107,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: EdgeInsets.only(left: 55),
                   child: Text(
                     value.currentTitle,
-                    style: TextStyle(height: -3.5, fontSize: 16),
+                    style: TextStyle(height: -2.25, fontSize: 16),
                     textAlign: TextAlign.left,
                   ),
                 ),
@@ -118,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: EdgeInsets.only(left: 55),
                   child: Text(
                     value.currentArtist,
-                    style: TextStyle(height: -4.5, fontSize: 12),
+                    style: TextStyle(height: -0.5, fontSize: 12),
                     textAlign: TextAlign.left,
                   ),
                 ),
@@ -140,6 +142,27 @@ class _HomeScreenState extends State<HomeScreen> {
                       value.updatePosition(val);
                     },
                   ),
+                ),
+          ),
+          Consumer<AudioPlayerLogic>(
+            builder:
+                (context, value, child) => Stack(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 22),
+                      child: Text(
+                        value.getCurrentTimeForUI(),
+                        style: TextStyle(height: -1.6),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 280),
+                      child: Text(
+                        value.getCurrentDurationForUI(),
+                        style: TextStyle(height: -1.6),
+                      ),
+                    ),
+                  ],
                 ),
           ),
           Row(
@@ -181,12 +204,13 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text(
               '${(audioPlayerLogic.currentVolume * 100).toInt()}%',
               textAlign: TextAlign.end,
-              style: TextStyle(height: -3.1),
+              style: TextStyle(height: -1.8),
             ),
           ),
-          //TODO: add history button functionality
           IconButton(
-            onPressed: testFunction,
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/history_screen');
+            },
             icon: Icon(Icons.menu_book_rounded),
           ),
         ],
