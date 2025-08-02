@@ -33,7 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
       context,
       listen: false,
     );
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(
