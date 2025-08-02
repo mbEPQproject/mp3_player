@@ -74,6 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 100,
               child: TextButton(
                 onPressed: () {
+                  //TODO: fix this back - using this as song add test
                   Provider.of<AudioPlayerLogic>(
                     context,
                     listen: false,
@@ -82,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     context,
                     listen: false,
                   ).addToQueue(Globals.albums[6].songs[2]);
-                  //TODO: fix this back - using this as song add test
+                  //-------------------------------------------------
                   //Navigator.pushReplacementNamed(context, '/albums_screen');
                 },
                 style: ButtonStyle(
@@ -178,27 +179,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: () {
-                  audioPlayerLogic.previousSong;
-                },
-                icon: Icon(Icons.arrow_left_rounded, size: 80),
-              ),
-              Consumer<AudioPlayerLogic>(
-                builder:
-                    (context, value, child) => IconButton(
-                      onPressed: audioPlayerLogic.mainButtonPress,
-                      icon: audioPlayerLogic.getIcon(),
+          Consumer<AudioPlayerLogic>(
+            builder:
+                (context, value, child) => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        value.previousSong();
+                      },
+                      icon: Icon(Icons.arrow_left_rounded, size: 80),
                     ),
-              ),
-              IconButton(
-                onPressed: audioPlayerLogic.skip,
-                icon: Icon(Icons.arrow_right_rounded, size: 80),
-              ),
-            ],
+                    IconButton(
+                      onPressed: value.mainButtonPress,
+                      icon: value.getIcon(),
+                    ),
+                    IconButton(
+                      onPressed: value.skip,
+                      icon: Icon(Icons.arrow_right_rounded, size: 80),
+                    ),
+                  ],
+                ),
           ),
           Consumer<AudioPlayerLogic>(
             builder:

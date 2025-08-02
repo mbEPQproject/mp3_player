@@ -122,15 +122,15 @@ class AudioPlayerLogic extends ChangeNotifier {
   }
 
   void previousSong() async {
-    if (history.isEmpty) {
-      print("History is empty.");
-      return;
-    }
-
     if (isPlaying == true ||
         await audioPlayer.getCurrentPosition() != Duration.zero) {
       await audioPlayer.pause();
       await audioPlayer.seek(Duration.zero);
+      return;
+    }
+
+    if (history.isEmpty) {
+      print("History is empty.");
       return;
     }
 
@@ -210,6 +210,10 @@ class AudioPlayerLogic extends ChangeNotifier {
   List<Song> getHistory() {
     // returned reversed so that the visualisation looks correct (songs coming in at the top)
     return history.reversed.toList();
+  }
+
+  List<Song> getQueue() {
+    return queue;
   }
 
   void addFromHistory(String whereTo, int index) {
