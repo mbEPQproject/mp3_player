@@ -28,7 +28,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
               itemCount: value.getHistory().length,
               itemBuilder:
                   (context, index) => ListTile(
-                    tileColor: const Color.fromARGB(30, 0, 0, 0),
                     leading: Image(
                       image: FileImage(
                         File(value.getHistory()[index].albumArtPath),
