@@ -106,10 +106,41 @@ class AudioPlayerLogic extends ChangeNotifier {
 
   Future<void> addToQueue(Song song) async {
     queue.add((song));
-
+    notifyListeners();
     if (queue.length == 1) {
       play();
     }
+  }
+
+  void queueRemoveAt(int index) async {
+    queue.removeAt(index);
+    updateUI();
+  }
+
+  void moveQueue(int oldIndex, int newIndex) async {
+    List<Song> newQueue = queue;
+    Song songToMove = queue[oldIndex];
+
+    // remove the song from new queue
+    // place the song into new queue
+    // if the song is placed in spot 1, you have to add it into spot 2 then skip to skip to that second song
+    // replace the old queue with new queue
+
+    /*
+    if (newIndex == 0) {
+      newQueue.insert(1, songToMove);
+    } else if (newIndex > oldIndex) {
+      newQueue.removeAt(oldIndex);
+      newQueue.insert(newIndex - 1, songToMove);
+    } else {
+      newQueue.removeAt(oldIndex);
+      newQueue.insert(newIndex - 1, songToMove);
+    }
+    queue = newQueue;
+    skip();
+    
+    */
+    updateUI();
   }
 
   void play() async {
@@ -214,6 +245,13 @@ class AudioPlayerLogic extends ChangeNotifier {
 
   List<Song> getQueue() {
     return queue;
+  }
+
+  Color ifZeroGray(int index) {
+    if (index == 0) {
+      return const Color.fromARGB(255, 200, 200, 200);
+    }
+    return Colors.transparent;
   }
 
   void addFromHistory(String whereTo, int index) {
