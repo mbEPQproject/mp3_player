@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'objects/songs.dart';
 import 'dart:async';
 import 'package:mp3_player/logic/objects/albums.dart';
-import 'package:mp3_player/logic/objects/songs.dart';
 
 class AudioPlayerLogic extends ChangeNotifier {
   bool isPlaying = false;
@@ -138,7 +137,7 @@ class AudioPlayerLogic extends ChangeNotifier {
 
   void play() async {
     if (queue.isEmpty) {
-      print("Queue is empty.");
+      //print("Queue is empty.");
     } else {
       await audioPlayer.play(DeviceFileSource(queue[0].songPath));
     }
@@ -154,7 +153,7 @@ class AudioPlayerLogic extends ChangeNotifier {
     }
 
     if (history.isEmpty) {
-      print("History is empty.");
+      //print("History is empty.");
       return;
     }
 
@@ -165,7 +164,7 @@ class AudioPlayerLogic extends ChangeNotifier {
 
   void skip() async {
     if (queue.isEmpty) {
-      print("Queue is empty.");
+      //print("Queue is empty.");
       updateUI();
     } else {
       await audioPlayer.stop();
@@ -177,7 +176,7 @@ class AudioPlayerLogic extends ChangeNotifier {
 
   void mainButtonPress() async {
     if (queue.isEmpty) {
-      print("Queue is empty.");
+      //print("Queue is empty.");
       return;
     }
     if (isPlaying) {

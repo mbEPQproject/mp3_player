@@ -1,23 +1,9 @@
-/* TODO: WHEN COMPLETED APP
-o fix imports to only essentials across entire app
-o remove all print statements
-*/
 import 'package:flutter/material.dart';
 import 'package:mp3_player/ui/home_screen.dart';
 import 'package:mp3_player/ui/loading_screen.dart';
-// USE FOR ACTUAL APP import '/ui/opening_loadingscreen.dart';
-import 'ui_testing/ZZZalbum_select.dart';
-import 'data/globals.dart';
-
-import 'dart:io';
-
 import '/logic/objects/albums.dart';
-import '/logic/objects/songs.dart';
 import 'package:mp3_player/logic/audio_player_logic.dart';
 import 'package:provider/provider.dart';
-import 'ui_testing/ZZZsong_test.dart';
-import 'ui_testing/ZZZsong_select.dart';
-
 import 'ui/history_screen.dart';
 import 'ui/queue_screen.dart';
 import 'ui/albums_screen.dart';
@@ -39,12 +25,6 @@ void main() async {
           '/albums_screen': (context) => AlbumsScreen(),
           '/songs_screen':
               (context) => SongsScreen(
-                album: ModalRoute.of(context)!.settings.arguments as Album,
-              ),
-          //past this are screens which i wont be using - they were for testing and will be used as references
-          '/album_select': (context) => AlbumSelect(),
-          '/song_select':
-              (context) => SongSelect(
                 album: ModalRoute.of(context)!.settings.arguments as Album,
               ),
         },

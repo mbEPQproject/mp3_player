@@ -1,8 +1,5 @@
 import 'dart:io';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:mp3_player/logic/audio_player_logic.dart';
-import '/logic/objects/albums.dart';
-import '/data/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,19 +11,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool testFunction() {
-    print('button pressed');
-    Provider.of<AudioPlayerLogic>(
-      context,
-      listen: false,
-    ).addToQueue(Globals.albums[0].songs[0]);
-    Provider.of<AudioPlayerLogic>(
-      context,
-      listen: false,
-    ).addToQueue(Globals.albums[6].songs[0]);
-    return true;
-  }
-
   @override
   Widget build(BuildContext context) {
     var audioPlayerLogic = Provider.of<AudioPlayerLogic>(

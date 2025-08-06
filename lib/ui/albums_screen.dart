@@ -1,9 +1,5 @@
-import 'package:mp3_player/logic/audio_player_logic.dart';
-
-import 'songs_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:mp3_player/data/globals.dart';
-import 'package:provider/provider.dart';
 import 'dart:io';
 
 class AlbumsScreen extends StatefulWidget {
