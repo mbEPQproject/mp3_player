@@ -86,6 +86,7 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
               ),
             ),
             subtitle: Stack(
+              alignment: AlignmentDirectional.topCenter,
               children: [
                 Container(
                   padding: EdgeInsets.only(),
