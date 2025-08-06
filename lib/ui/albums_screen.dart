@@ -1,4 +1,3 @@
-//TODO: make an albums screen
 import 'package:mp3_player/logic/audio_player_logic.dart';
 
 import 'songs_screen.dart';
@@ -112,7 +111,13 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
                 ),
               ],
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                '/songs_screen',
+                arguments: Globals.albums[index],
+              );
+            },
           );
         },
       ),
