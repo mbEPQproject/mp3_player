@@ -1,6 +1,11 @@
 //TODO: make an albums screen
+import 'package:mp3_player/logic/audio_player_logic.dart';
+
 import 'songs_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:mp3_player/data/globals.dart';
+import 'package:provider/provider.dart';
+import 'dart:io';
 
 class AlbumsScreen extends StatefulWidget {
   const AlbumsScreen({super.key});
@@ -63,7 +68,53 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
           ],
         ),
       ),
-      body: Placeholder(),
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
+        padding: EdgeInsets.all(8),
+        itemCount: Globals.albums.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Container(
+              padding: EdgeInsets.only(bottom: 0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image(
+                  image: FileImage(File(Globals.albums[index].albumArtPath)),
+                ),
+              ),
+            ),
+            subtitle: Stack(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(),
+                  child: Text(
+                    Globals.albums[index].title,
+                    style: TextStyle(
+                      height: 2,
+                      fontSize: 8,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(),
+                  child: Text(
+                    Globals.albums[index].artist,
+                    style: TextStyle(
+                      height: 5.5,
+                      fontSize: 7,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            onTap: () {},
+          );
+        },
+      ),
     );
   }
 }
