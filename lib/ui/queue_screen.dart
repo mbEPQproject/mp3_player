@@ -101,14 +101,20 @@ class _QueueScreenState extends State<QueueScreen> {
                               3,
                               value.queue[index].title.length - 4,
                             ),
-                            style: TextStyle(fontSize: 12),
+                            style: TextStyle(
+                              fontSize: 12,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ),
                         Container(
                           padding: EdgeInsets.only(top: 16),
                           child: Text(
                             value.queue[index].artist,
-                            style: TextStyle(fontSize: 8),
+                            style: TextStyle(
+                              fontSize: 8,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ),
                       ],
