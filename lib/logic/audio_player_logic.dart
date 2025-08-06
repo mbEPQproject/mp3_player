@@ -119,27 +119,18 @@ class AudioPlayerLogic extends ChangeNotifier {
 
   void moveQueue(int oldIndex, int newIndex) async {
     List<Song> newQueue = queue;
-    Song songToMove = queue[oldIndex];
+    Song firstSong = queue[oldIndex];
 
-    // remove the song from new queue
-    // place the song into new queue
-    // if the song is placed in spot 1, you have to add it into spot 2 then skip to skip to that second song
-    // replace the old queue with new queue
-
-    /*
     if (newIndex == 0) {
-      newQueue.insert(1, songToMove);
-    } else if (newIndex > oldIndex) {
-      newQueue.removeAt(oldIndex);
-      newQueue.insert(newIndex - 1, songToMove);
+      newQueue.insert(1, firstSong);
+      newQueue[oldIndex + 1] = newQueue[0];
+      skip();
     } else {
-      newQueue.removeAt(oldIndex);
-      newQueue.insert(newIndex - 1, songToMove);
+      newQueue[oldIndex] = newQueue[newIndex];
+      newQueue[newIndex] = firstSong;
     }
+
     queue = newQueue;
-    skip();
-    
-    */
     updateUI();
   }
 
