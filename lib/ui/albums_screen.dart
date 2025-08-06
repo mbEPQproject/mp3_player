@@ -75,13 +75,10 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
         itemCount: Globals.albums.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Container(
-              padding: EdgeInsets.only(bottom: 0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Image(
-                  image: FileImage(File(Globals.albums[index].albumArtPath)),
-                ),
+            title: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image(
+                image: FileImage(File(Globals.albums[index].albumArtPath)),
               ),
             ),
             subtitle: Stack(

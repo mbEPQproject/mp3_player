@@ -106,7 +106,7 @@ class AudioPlayerLogic extends ChangeNotifier {
 
   Future<void> addToQueue(Song song) async {
     queue.add((song));
-    notifyListeners();
+    updateUI();
     if (queue.length == 1) {
       play();
     }

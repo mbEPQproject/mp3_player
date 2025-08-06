@@ -39,6 +39,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         value.getHistory()[index].title.length - 4,
                       ),
                     ),
+                    subtitle: Text(value.getHistory()[index].artist),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -56,7 +57,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         ),
                       ],
                     ),
-                    subtitle: Text(value.getHistory()[index].artist),
                     onTap: () {},
                     splashColor: Colors.transparent,
                   ),
