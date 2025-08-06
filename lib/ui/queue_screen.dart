@@ -1,9 +1,7 @@
-//TODO: make a queue screen
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mp3_player/logic/audio_player_logic.dart';
-import 'package:mp3_player/data/globals.dart';
 
 class QueueScreen extends StatefulWidget {
   const QueueScreen({super.key});
@@ -55,21 +53,7 @@ class _QueueScreenState extends State<QueueScreen> {
               width: 100,
               child: TextButton(
                 onPressed: () {
-                  //TODO: fix this back - using this as song add test
-                  Provider.of<AudioPlayerLogic>(
-                    context,
-                    listen: false,
-                  ).addToQueue(Globals.albums[2].songs[2]);
-                  Provider.of<AudioPlayerLogic>(
-                    context,
-                    listen: false,
-                  ).addToQueue(Globals.albums[6].songs[2]);
-                  Provider.of<AudioPlayerLogic>(
-                    context,
-                    listen: false,
-                  ).addToQueue(Globals.albums[10].songs[2]);
-                  //-------------------------------------------------
-                  //Navigator.pushReplacementNamed(context, '/albums_screen');
+                  Navigator.pushReplacementNamed(context, '/albums_screen');
                 },
                 style: ButtonStyle(
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
