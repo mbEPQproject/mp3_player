@@ -64,6 +64,10 @@ class _QueueScreenState extends State<QueueScreen> {
                     context,
                     listen: false,
                   ).addToQueue(Globals.albums[6].songs[2]);
+                  Provider.of<AudioPlayerLogic>(
+                    context,
+                    listen: false,
+                  ).addToQueue(Globals.albums[10].songs[2]);
                   //-------------------------------------------------
                   //Navigator.pushReplacementNamed(context, '/albums_screen');
                 },
