@@ -2,6 +2,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'objects/songs.dart';
 import 'dart:async';
+import 'package:mp3_player/logic/objects/albums.dart';
+import 'package:mp3_player/logic/objects/songs.dart';
 
 class AudioPlayerLogic extends ChangeNotifier {
   bool isPlaying = false;
@@ -266,5 +268,24 @@ class AudioPlayerLogic extends ChangeNotifier {
     userHistory.removeAt(index);
     history = userHistory.reversed.toList();
     notifyListeners();
+  }
+
+  void addEntireAlbum(String whereTo, Album album) {
+    List<Song> newQueue = queue;
+
+    if (newQueue.isEmpty || whereTo == 'bottom') {
+      for (Song song in album.songs) {
+        addToQueue(song);
+      }
+      return;
+    }
+
+    if (whereTo == 'top') {
+      for (Song song in album.songs.reversed) {
+        newQueue.insert(1, song);
+      }
+    }
+
+    queue = newQueue;
   }
 }

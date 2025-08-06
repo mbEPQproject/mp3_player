@@ -25,14 +25,23 @@ class _SongsScreenState extends State<SongsScreen> {
           const Color.fromARGB(255, 236, 236, 236).toARGB32(),
         ),
         actions: [
-          Container(
-            padding: EdgeInsets.only(right: 10),
-            child: TextButton(
-              child: Text('...', style: TextStyle(fontSize: 35, height: -0.5)),
-              onPressed: () {
-                //TODO: add the two buttons to add entire album to queue
-              },
-            ),
+          IconButton(
+            onPressed: () {
+              Provider.of<AudioPlayerLogic>(
+                context,
+                listen: false,
+              ).addEntireAlbum('top', album);
+            },
+            icon: Icon(Icons.arrow_upward_rounded),
+          ),
+          IconButton(
+            onPressed: () {
+              Provider.of<AudioPlayerLogic>(
+                context,
+                listen: false,
+              ).addEntireAlbum('bottom', album);
+            },
+            icon: Icon(Icons.arrow_downward_rounded),
           ),
         ],
       ),
