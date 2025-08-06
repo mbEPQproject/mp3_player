@@ -131,7 +131,11 @@ class _QueueScreenState extends State<QueueScreen> {
                     ),
                     trailing: IconButton(
                       onPressed: () {
-                        value.queueRemoveAt(index);
+                        if (index == 0) {
+                          value.skip();
+                        } else {
+                          value.queueRemoveAt(index);
+                        }
                       },
                       icon: Icon(Icons.cancel_presentation_sharp),
                     ),
